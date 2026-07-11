@@ -124,7 +124,8 @@ Status: MOCKED
 ```
 
 ## Screenshots
-Screenshots can be added here once the project is demonstrated in a terminal or during a live review session.
+<img width="1281" height="629" alt="Screenshot 2026-07-11 180259" src="https://github.com/user-attachments/assets/25438c2f-a926-41d6-bc7c-e68bf052ad5a" />
+
 
 ## How Logging Works
 Logs are written to logs/trading_bot.log and also printed to the console. Each entry records the timestamp, execution mode, order details, response data, warnings, and errors.
