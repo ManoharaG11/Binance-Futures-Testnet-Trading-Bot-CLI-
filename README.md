@@ -1,13 +1,13 @@
 # 🚀 Binance Futures Testnet Trading Bot (CLI)
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
+![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)
 ![Status](https://img.shields.io/badge/Status-Internship%20Project-success.svg)
 ![Platform](https://img.shields.io/badge/Platform-CLI-orange.svg)
 
-A production-ready **Python Command Line Interface (CLI)** application for executing **BUY** and **SELL** orders on the **Binance Futures Testnet**. The project emphasizes clean architecture, secure credential management, modular design, comprehensive logging, robust input validation, and professional error handling.
+A production-style **Python Command Line Interface (CLI)** application for placing **BUY** and **SELL** orders on the **Binance USDT-M Futures Testnet**. The project demonstrates clean backend architecture, modular design, secure credential management, robust input validation, structured logging, and professional exception handling.
 
-The application supports both **Live Mode** (Binance Futures Testnet) and **Demo Mode**, allowing recruiters and developers to evaluate the application without requiring live API credentials.
+To support evaluation without requiring Binance credentials, the application includes a **Demo Mode** that simulates realistic Binance API responses while preserving the same workflow as Live Mode.
 
 ---
 
@@ -20,9 +20,8 @@ The application supports both **Live Mode** (Binance Futures Testnet) and **Demo
 | BUY / SELL Support | ✅ |
 | Binance Futures Testnet Integration | ✅ |
 | Demo Mode | ✅ |
+| Rich CLI Interface | ✅ |
 | Secure Environment Variables | ✅ |
-| CLI Interface | ✅ |
-| Rich Terminal Output | ✅ |
 | Input Validation | ✅ |
 | Professional Logging | ✅ |
 | Exception Handling | ✅ |
@@ -30,7 +29,7 @@ The application supports both **Live Mode** (Binance Futures Testnet) and **Demo
 
 ---
 
-# 🏗 Architecture
+# 🏗 System Architecture
 
 ```text
                     +----------------------+
@@ -90,7 +89,7 @@ Trading Client
  ├── Live Mode
  │      │
  │      ▼
- │  Binance Futures Testnet
+ │ Binance Futures Testnet
  │
  └── Demo Mode
         │
@@ -111,17 +110,17 @@ Console Output
 | Technology | Purpose |
 |------------|---------|
 | Python 3.11+ | Core Programming Language |
-| python-binance | Binance API Integration |
+| python-binance | Binance Futures API Integration |
 | argparse | Command Line Interface |
-| Rich | Professional Terminal Output |
+| Rich | Enhanced Terminal Output |
 | python-dotenv | Environment Variable Management |
-| logging | Application Logging |
-| requests | HTTP Requests |
+| logging | Structured Logging |
+| requests | HTTP Communication |
 | pytest | Unit Testing |
 
 ---
 
-# 📁 Project Structure
+# 📂 Project Structure
 
 ```text
 trading_bot/
@@ -141,9 +140,9 @@ trading_bot/
 ├── tests/
 │
 ├── .env.example
-├── .gitignore
-├── requirements.txt
+├── LICENSE
 ├── README.md
+├── requirements.txt
 └── main.py
 ```
 
@@ -151,34 +150,30 @@ trading_bot/
 
 # 🚀 Installation
 
-### 1. Clone Repository
+## 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/binance-futures-trading-bot.git
-cd binance-futures-trading-bot
+git clone https://github.com/yourusername/binance-futures-testnet-trading-bot.git
+cd binance-futures-testnet-trading-bot
 ```
 
-### 2. Create Virtual Environment
-
-```bash
-python -m venv venv
-```
-
-Activate it.
+## 2. Create a Virtual Environment
 
 Windows
 
 ```bash
-venv\Scripts\activate
+python -m venv .venv
+.venv\Scripts\activate
 ```
 
 Linux / macOS
 
 ```bash
-source venv/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
-### 3. Install Dependencies
+## 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -188,11 +183,11 @@ pip install -r requirements.txt
 
 # 🔐 Configuration
 
-Create a `.env` file.
+Create a `.env` file using `.env.example`.
 
 ```env
-API_KEY=
-API_SECRET=
+API_KEY=**************
+API_SECRET=************
 BASE_URL=https://testnet.binancefuture.com
 DEMO_MODE=false
 ```
@@ -210,9 +205,11 @@ DEMO_MODE=false
 
 # 💻 Usage
 
-## Live Mode
+## ▶ Live Mode
 
-Uses Binance Futures Testnet credentials.
+Requires valid Binance Futures Testnet credentials.
+
+Market Order
 
 ```bash
 python main.py --symbol BTCUSDT --side BUY --type MARKET --quantity 0.01
@@ -226,7 +223,7 @@ python main.py --symbol BTCUSDT --side SELL --type LIMIT --quantity 0.01 --price
 
 ---
 
-## Demo Mode
+## ▶ Demo Mode
 
 Runs without Binance credentials.
 
@@ -234,11 +231,13 @@ Runs without Binance credentials.
 python main.py --demo --symbol BTCUSDT --side BUY --type MARKET --quantity 0.01
 ```
 
-Demo Mode returns deterministic Binance-style responses and is intended for development, testing, and project evaluation.
+> **Note**
+>
+> Demo Mode generates deterministic Binance-style responses for development, testing, and project evaluation. No requests are sent to Binance while running in Demo Mode.
 
 ---
 
-# 🖥 Sample Output
+# 📷 Sample Output
 
 ```text
 ========================================
@@ -247,54 +246,53 @@ Demo Mode returns deterministic Binance-style responses and is intended for deve
 
 Execution Mode : DEMO
 
-------------------------------------
+----------------------------------------
 Order Summary
-------------------------------------
+----------------------------------------
 
-Symbol      : BTCUSDT
-Side        : BUY
-Type        : MARKET
-Quantity    : 0.01
+Symbol        : BTCUSDT
+Side          : BUY
+Order Type    : MARKET
+Quantity      : 0.01
+Price         : MARKET
 
-------------------------------------
+----------------------------------------
 
-Order ID            : demo-order-id
-Status              : MOCKED
+API Response
+
+Order ID            : demo-BTCUSDT-buy
+Status              : FILLED
 Executed Quantity   : 0.01
-Average Price       : 0.0
-Client Order ID     : demo-client-order-id
+Average Price       : 100000.0
+Client Order ID     : demo-client-BTCUSDT-buy
 
-✓ Order placed successfully
+Demo Mode: Simulated order executed successfully.
+No request was sent to the Binance Futures Testnet.
 ```
 
 ---
 
 # 📸 Screenshots
-
-> Replace these placeholders with screenshots of your application.
-
-- CLI Execution
-- Demo Mode Output
-- Live Mode Output
-- Logging Output
+<img width="1281" height="629" alt="Screenshot 2026-07-11 180259" src="https://github.com/user-attachments/assets/57d64c6b-703f-4979-9c92-edad3034d42e" />
 
 ---
 
-# 📄 Logging
+# 📝 Logging
 
-Logs are automatically written to:
+Application logs are automatically stored in:
 
 ```text
 logs/trading_bot.log
 ```
 
-Each log records:
+Each execution records:
 
 - Timestamp
 - Execution Mode
 - Order Parameters
-- API Request
-- API Response
+- API Requests
+- API Responses
+- Execution Time
 - Warnings
 - Errors
 - Exceptions
@@ -302,7 +300,7 @@ Each log records:
 Example
 
 ```text
-2026-07-11 16:51:05 INFO
+2026-07-11 17:53:41 INFO
 
 Execution Mode : DEMO
 
@@ -315,45 +313,53 @@ Qty    : 0.01
 
 Result
 
-Status : MOCKED
-OrderID: demo-order-id
+Status : FILLED
+OrderID: demo-BTCUSDT-buy
+Execution Time : 0.001s
 ```
 
 ---
 
 # ⚠ Error Handling
 
-| Error | Description |
-|--------|-------------|
-| Authentication Error | Invalid API credentials |
-| Network Error | Internet connectivity issues |
-| Timeout | API request timeout |
-| Validation Error | Invalid CLI arguments |
-| Environment Error | Missing configuration |
-| Rate Limit Error | Binance API rate limit exceeded |
-| Unexpected Error | Gracefully handled runtime exceptions |
+The application gracefully handles:
+
+| Error Type | Description |
+|------------|-------------|
+| Authentication Errors | Invalid API credentials |
+| Validation Errors | Invalid CLI arguments |
+| Network Errors | Internet connectivity issues |
+| Timeout Errors | API request timeout |
+| Rate Limiting | Binance API restrictions |
+| Environment Errors | Missing or invalid configuration |
+| Unexpected Exceptions | Graceful fallback with meaningful messages |
+
+Raw Python tracebacks are never shown to end users.
 
 ---
 
 # 🔒 Security
 
 - API credentials are stored securely using environment variables.
-- API secrets are never logged or printed.
-- Sensitive values are masked where applicable.
-- Demo Mode prevents accidental live order execution.
+- API secrets are never printed or logged.
+- Sensitive information is masked where applicable.
 - Configuration is validated before execution.
+- Demo Mode prevents accidental live order execution.
 
 ---
 
 # 📌 Design Decisions
 
-The project follows a modular architecture with clear separation of concerns.
+This project follows a modular backend architecture with clear separation of concerns.
 
-- Validation is isolated from business logic.
-- Logging is centralized.
-- Trading operations are encapsulated.
-- Environment configuration is externalized.
-- Demo Mode enables safe evaluation without live credentials.
+- Dedicated validation layer
+- Centralized logging configuration
+- Client abstraction for Live and Demo execution
+- Reusable order models
+- Externalized configuration
+- Clean exception hierarchy
+
+The design emphasizes readability, maintainability, and extensibility.
 
 ---
 
@@ -361,7 +367,7 @@ The project follows a modular architecture with clear separation of concerns.
 
 - Demo Mode simulates Binance responses and does not place real orders.
 - Live Mode requires valid Binance Futures Testnet credentials.
-- Binance API permissions or IP restrictions may prevent order execution.
+- Binance API permissions, account configuration, or IP restrictions may prevent live order execution.
 - The application currently supports MARKET and LIMIT orders only.
 
 ---
@@ -370,13 +376,13 @@ The project follows a modular architecture with clear separation of concerns.
 
 - [ ] Stop-Loss Orders
 - [ ] Take-Profit Orders
+- [ ] OCO Orders
 - [ ] Docker Support
 - [ ] GitHub Actions CI/CD
-- [ ] Advanced Unit Tests
-- [ ] Retry Mechanism
-- [ ] Async API Requests
+- [ ] Asynchronous API Requests
 - [ ] Portfolio Dashboard
-- [ ] Order History Export
+- [ ] Trading History Export
+- [ ] Enhanced Retry Mechanism
 
 ---
 
@@ -384,13 +390,20 @@ The project follows a modular architecture with clear separation of concerns.
 
 Contributions, improvements, and suggestions are welcome.
 
-Feel free to fork the repository, create a feature branch, and submit a pull request.
+If you would like to improve this project:
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Commit your changes.
+4. Submit a Pull Request.
 
 ---
 
 # 📜 License
 
-This project is released under the **MIT License**.
+This project is licensed under the **Apache License 2.0**.
+
+See the **LICENSE** file for complete license information.
 
 ---
 
@@ -398,20 +411,19 @@ This project is released under the **MIT License**.
 
 **G. Manohara**
 
-Computer Science & Business Systems (CSBS) Student  
-Python Backend Developer | Web Developer | AI Enthusiast
-
 ---
 
-## ⭐ Project Purpose
+# 🎯 Project Objective
 
-This project was developed as a **Python Backend Internship Assignment** to demonstrate practical skills in:
+This project was developed as part of a **Python Backend Internship Assignment** to demonstrate practical knowledge of:
 
-- REST API Integration
 - Python Backend Development
-- CLI Application Development
+- REST API Integration
+- Command-Line Application Development
 - Secure Credential Management
-- Software Architecture
+- Software Architecture & Design
 - Logging & Exception Handling
-- Clean Code Practices
+- Clean Code Principles
 - Professional Project Documentation
+
+The project emphasizes writing maintainable, production-oriented Python code while following software engineering best practices.
